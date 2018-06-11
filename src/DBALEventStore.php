@@ -40,13 +40,13 @@ class DBALEventStore implements EventStore, EventStoreManagement
 {
     private $connection;
 
-    private $payloadSerializer;
+    protected $payloadSerializer;
 
-    private $metadataSerializer;
+    protected $metadataSerializer;
 
     private $loadStatement = null;
 
-    private $tableName;
+    protected $tableName;
 
     private $useBinary;
 
@@ -144,19 +144,20 @@ class DBALEventStore implements EventStore, EventStoreManagement
 
             throw new DuplicatePlayheadException($eventStream, $exception);
         } catch (DBALException $exception) {
+            var_dump($exception->getMessage());exit;
             $this->connection->rollBack();
 
             throw DBALEventStoreException::create($exception);
         }
     }
 
-    private function insertMessage(Connection $connection, DomainMessage $domainMessage)
+    protected function insertMessage(Connection $connection, DomainMessage $domainMessage)
     {
         $data = [
             'uuid'        => $this->convertIdentifierToStorageValue((string) $domainMessage->getId()),
             'playhead'    => $domainMessage->getPlayhead(),
-            'metadata'    => json_encode($this->metadataSerializer->serialize($domainMessage->getMetadata())),
-            'payload'     => json_encode($this->payloadSerializer->serialize($domainMessage->getPayload())),
+            'metadata'    => $this->metadataSerializer->serialize($domainMessage->getMetadata()),
+            'payload'     => $this->payloadSerializer->serialize($domainMessage->getPayload()),
             'recorded_on' => $domainMessage->getRecordedOn()->toString(),
             'type'        => $domainMessage->getType(),
         ];
