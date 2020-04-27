@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the broadway/broadway package.
+ * This file is part of the broadway/event-store-dbal package.
  *
- * (c) Qandidate.com <opensource@qandidate.com>
+ * (c) 2020 Broadway project
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -44,6 +44,7 @@ class DBALEventStoreTest extends EventStoreTest
 
     /**
      * @test
+     * @doesNotPerformAssertions
      */
     public function it_allows_no_binary_uuid_converter_provided_when_not_using_binary()
     {

@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the broadway/broadway package.
+ * This file is part of the broadway/event-store-dbal package.
  *
- * (c) Qandidate.com <opensource@qandidate.com>
+ * (c) 2020 Broadway project
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,8 +21,8 @@ use Doctrine\DBAL\DBALException;
  */
 class DBALEventStoreException extends EventStoreException
 {
-    public static function create(DBALException $exception)
+    public static function create(DBALException $exception): DBALEventStoreException
     {
-        return new DBALEventStoreException(null, 0, $exception);
+        return new DBALEventStoreException('', 0, $exception);
     }
 }

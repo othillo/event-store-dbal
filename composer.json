@@ -4,9 +4,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.2",
-        "broadway/broadway": "^2.2.1",
-        "doctrine/dbal": "^2.4",
-        "broadway/uuid-generator": "~0.4"
+        "broadway/broadway": "^2.3.1",
+        "doctrine/dbal": "^2.4"
     },
     "authors": [
       {
@@ -37,8 +36,9 @@
     "require-dev": {
         "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "^8.0",
-        "ramsey/uuid": "^3.0",
-        "broadway/coding-standard": "^1.0"
+        "ramsey/uuid": "^4.0",
+        "broadway/coding-standard": "^1.0",
+        "phpstan/phpstan": "@stable"
     },
     "autoload": {
         "psr-4": {
